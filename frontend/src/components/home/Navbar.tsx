@@ -39,7 +39,7 @@ const Navbar = () => {
 
           {/* Desktop menu */}
 
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center *:uppercase space-x-8">
             <NavLink href="/">Home</NavLink>
             <NavLink href="/how-it-works">How it Works</NavLink>
             <NavLink href="/about-us">About Us</NavLink>
