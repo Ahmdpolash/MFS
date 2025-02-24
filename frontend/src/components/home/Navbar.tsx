@@ -13,20 +13,6 @@ const Navbar = () => {
     setOpen(!open);
   };
 
-  const navList = (
-    <>
-      <Link to="/" className="lg:ml-4 text-white">
-        Home
-      </Link>
-      <Link to="/about" className="lg:ml-4 text-white">
-        How it Works
-      </Link>
-      <Link to="/about-us" className="lg:ml-4 text-white">
-        About Us
-      </Link>
-    </>
-  );
-
   return (
     <motion.div
       initial={{ y: -100 }}
@@ -43,7 +29,10 @@ const Navbar = () => {
       <Container>
         <div className="flex justify-between py-4 items-center ">
           <div className="logo">
-            <Link to={"/"} className="text-2xl font-semibold cursor-pointer text-white">
+            <Link
+              to={"/"}
+              className="text-2xl font-semibold cursor-pointer text-white"
+            >
               MoneyMate
             </Link>
           </div>
@@ -77,10 +66,12 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center">
-            <Button className="bg-purple-600 hover:bg-purple-700 text-white cursor-pointer">
-              {" "}
-              SIGN IN
-            </Button>
+            <Link to={'/sign-in'}>
+              <Button className="bg-purple-600 hover:bg-purple-700 text-white cursor-pointer">
+                {" "}
+                SIGN IN
+              </Button>
+            </Link>
 
             <IoMdMenu
               className="text-3xl  text-white cursor-pointer lg:hidden ml-4"
