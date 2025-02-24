@@ -47,7 +47,7 @@ const Banner = () => {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="flex  sm:flex-row items-center justify-center gap-4"
           >
-            <Link to={"/login"}>
+            <Link to={"/sign-up"}>
               <Button
                 size="lg"
                 className="bg-purple-600 hover:bg-purple-700  cursor-pointer text-white px-8"

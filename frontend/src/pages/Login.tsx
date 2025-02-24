@@ -18,7 +18,6 @@ import { Link } from "react-router";
 import { loginSchema } from "@/types/schema";
 
 const Login = () => {
-    
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -63,7 +62,12 @@ const Login = () => {
                 name="pin"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel> Password</FormLabel>
+                    <div className="flex justify-between items-center cursor-pointer">
+                      <FormLabel> Password</FormLabel>
+                      <p className="ml-auto inline-block text-sm underline-offset-4 hover:underline">
+                        Forgot your password?
+                      </p>
+                    </div>
                     <FormControl>
                       <Input
                         type="password"

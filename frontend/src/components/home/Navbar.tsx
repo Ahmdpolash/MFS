@@ -41,8 +41,8 @@ const Navbar = () => {
 
           <div className="hidden md:flex items-center *:uppercase space-x-8">
             <NavLink href="/">Home</NavLink>
-            <NavLink href="/how-it-works">How it Works</NavLink>
-            <NavLink href="/about-us">About Us</NavLink>
+            <NavLink href="/">How it Works</NavLink>
+            <NavLink href="/">About Us</NavLink>
           </div>
 
           {/* Mobile menu */}
@@ -60,8 +60,8 @@ const Navbar = () => {
 
             <div className="flex h-screen flex-col *:text-3xl p-5 gap-y-5 text-[18px] items-center justify-center">
               <NavLink href="/">Home</NavLink>
-              <NavLink href="/how-it-works">How it Works</NavLink>
-              <NavLink href="/about-us">About Us</NavLink>
+              <NavLink href="/">How it Works</NavLink>
+              <NavLink href="/">About Us</NavLink>
             </div>
           </div>
 
