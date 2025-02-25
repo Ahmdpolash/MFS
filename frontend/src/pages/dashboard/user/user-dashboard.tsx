@@ -18,6 +18,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { DashboardPagination } from "@/components/dashboard/pagination";
 
 const transactions = [
   {
@@ -52,65 +53,69 @@ export function UserDashboard() {
 
   return (
     <div className="grid gap-4 md:gap-8 mt-3">
+      {/* header card box */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <Card>
+        <Card className="border border-slate-500/50">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
+            <CardTitle className="text-xl font-medium">
               Current Balance
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex gap-2 items-cente">
+            <div className="flex gap-1 items-cente">
               <div className="text-2xl font-bold">
                 {showBalance ? `৳${balance}` : "৳•••••"}
               </div>
-              <Button className=""
+              <Button
+                className="cursor-pointer"
                 variant="ghost"
                 size="icon"
                 onClick={() => setShowBalance(!showBalance)}
               >
                 {showBalance ? (
-                  <EyeOff className="h-4 w-4" />
+                  <EyeOff className="h-4 w-4 " />
                 ) : (
                   <Eye className="h-4 w-4" />
                 )}
               </Button>
             </div>
-            <p className="text-xs text-muted-foreground">Available Balance</p>
+            <p className="text-sm text-muted-foreground">Available Balance</p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="border border-slate-500/50">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Send Money</CardTitle>
+            <CardTitle className="text-xl font-medium ">Send Money</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">24</div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-sm text-muted-foreground">
               Transactions this month
             </p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="border border-slate-500/50">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Cash Out</CardTitle>
+            <CardTitle className="text-xl font-medium">Cash Out</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">12</div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-sm text-muted-foreground">
               Transactions this month
             </p>
           </CardContent>
         </Card>
       </div>
-      <Card>
+
+      {/* table */}
+      <Card className="border border-slate-500/50 cursor-pointer">
         <CardHeader>
-          <CardTitle>Recent Transactions</CardTitle>
-          <CardDescription>Your last 5 transactions</CardDescription>
+          <CardTitle className="text-xl">Recent Transactions</CardTitle>
+          <CardDescription>Your last transactions</CardDescription>
         </CardHeader>
         <CardContent>
           <Table>
-            <TableHeader>
-              <TableRow>
+            <TableHeader >
+              <TableRow className="*:text-slate-700 *:text-center">
                 <TableHead>Transaction ID</TableHead>
                 <TableHead>Date</TableHead>
                 <TableHead>Type</TableHead>
@@ -119,9 +124,9 @@ export function UserDashboard() {
                 <TableHead>Status</TableHead>
               </TableRow>
             </TableHeader>
-            <TableBody>
+            <TableBody className="">
               {transactions.map((transaction) => (
-                <TableRow key={transaction.id}>
+                <TableRow className="*:text-center " key={transaction.id}>
                   <TableCell className="font-medium">
                     {transaction.id}
                   </TableCell>
@@ -136,6 +141,11 @@ export function UserDashboard() {
           </Table>
         </CardContent>
       </Card>
+
+      {/* pagination */}
+      <div>
+        <DashboardPagination />
+      </div>
     </div>
   );
 }
