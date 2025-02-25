@@ -21,23 +21,21 @@ const createUser = async (req: Request, res: Response) => {
 
 const loginUser = async (req: Request, res: Response) => {
   try {
-    const { email, number, password } = req.body;
-
-    // // Check if either email or number is provided
-    // if (!email && !number) {
-    //   return res.status(400).json({
-    //     success: false,
-    //     message: "Email or phone number is required",
-    //   });
-    // }
-    
     const result = await authServices.loginUserIntoDB(req.body);
+  
+
+    res.cookie("token", result.token, {
+      httpOnly: true,
+      secure: process.env.mode === "production",
+      maxAge: 1000 * 60 * 60 * 24 * 365, // 1yr
+    });
 
     res.status(200).json({
       success: true,
-      message: "User login successfully",
-      data: result,
+      message: "User logged in successfully",
+     
     });
+   
   } catch (error) {
     res.status(400).json({
       success: true,

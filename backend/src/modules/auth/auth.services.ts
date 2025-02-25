@@ -2,7 +2,7 @@ import { errorHandler } from "../../utils/errorHandler";
 import { ILogin, IUser } from "./auth.interface";
 import User from "./auth.model";
 import bcrypt from "bcrypt";
-
+import jwt from "jsonwebtoken";
 const createUser = async (payload: IUser) => {
   // check if user is already exist
 
@@ -43,7 +43,18 @@ const loginUserIntoDB = async (payload: ILogin) => {
     throw new Error("Wrong credentials");
   }
 
-  return user;
+  const token = jwt.sign(
+    {
+      id: user._id,
+      email: user.email,
+      number: user.number,
+      accountType: user.accountType,
+    },
+    process.env.JWT_SECRET as string,
+    { expiresIn: "1d" }
+  );
+
+  return { token: token, user: user };
 };
 
 const getUsers = async () => {
