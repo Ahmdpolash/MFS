@@ -36,8 +36,8 @@ const SignUp = () => {
     resolver: zodResolver(signUpSchema),
     defaultValues: {
       name: "",
-      pin: "",
-      mobile: "",
+      password: "",
+      number: "",
       email: "",
       accountType: "USER",
       nid: "",
@@ -128,7 +128,7 @@ const SignUp = () => {
               {/* mobile  */}
               <FormField
                 control={form.control}
-                name="mobile"
+                name="number"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Mobile Number</FormLabel>
@@ -143,7 +143,7 @@ const SignUp = () => {
               {/* pin */}
               <FormField
                 control={form.control}
-                name="pin"
+                name="password"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel> Password</FormLabel>

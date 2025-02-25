@@ -76,7 +76,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     <Sidebar collapsible="icon" className="" {...props}>
       <SidebarHeader>
         <SidebarMenuButton size="lg" asChild>
-          <Link className="border-b border-gray-500/50 pb-2" to={"/dashboard"}>
+          <Link className="border-b border-gray-500/50 pb-2" to={"/"}>
             <span className="font-medium text-2xl text-center m-auto">
               MoneyMate
             </span>

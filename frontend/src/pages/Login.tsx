@@ -21,7 +21,7 @@ const Login = () => {
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      pin: "",
+      password: "",
       identifier: "",
     },
   });
@@ -59,7 +59,7 @@ const Login = () => {
               {/* pin */}
               <FormField
                 control={form.control}
-                name="pin"
+                name="password"
                 render={({ field }) => (
                   <FormItem>
                     <div className="flex justify-between items-center cursor-pointer">
