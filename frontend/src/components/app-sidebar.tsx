@@ -53,7 +53,7 @@ const menuItems = {
   user: [
     { title: "Dashboard Overview", url: "/dashboard/user", icon: LayoutDashboard },
     { title: "Send Money", url: "/dashboard/send-money", icon: Send },
-    { title: "Cashout", url: "/dashboard/send-money", icon: Banknote },
+    { title: "Cashout", url: "/dashboard/cashout", icon: Banknote },
     { title: "Transactions", url: "/dashboard/transactions", icon: ArrowRightLeft },
     { title: "Profile", url: "/dashboard/profile", icon: User },
   ],

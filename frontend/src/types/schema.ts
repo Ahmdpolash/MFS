@@ -19,3 +19,12 @@ export const signUpSchema = z.object({
   accountType: z.enum(["AGENT", "USER"]),
   nid: z.string().min(10, "NID must be at least 10 characters"),
 });
+
+export const cashoutSchema = z.object({
+  number: z.string().regex(/^01\d{9}$/, "Invalid Bangladesh mobile number"),
+  amount: z.string(),
+  password: z
+    .string()
+    .length(5, "PIN must be exactly 5 digits")
+    .regex(/^\d+$/, "PIN must contain only numbers"),
+});

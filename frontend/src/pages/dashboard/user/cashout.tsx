@@ -12,21 +12,20 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import { SendMoney } from "@/components/dashboard/user/sentmoney/sent-money";
-import { TransactionForm } from "@/components/dashboard/user/sentmoney/transactionForm";
-import ConfirmPage from "@/components/dashboard/user/sentmoney/confirmPage";
+import { CashoutStepOne } from "@/components/dashboard/user/cashout/CashoutStepOne";
+import { CashoutStepTwo } from "@/components/dashboard/user/cashout/CashoutStepTwo";
 
 type formData = {
-  recipient: string;
+  number: string;
   amount: string;
   pin: string;
 };
 
-export function SentMoney() {
+export function Cashout() {
   const [step, setStep] = useState(1);
 
   const [data, setData] = useState<formData>({
-    recipient: "",
+    number: "",
     amount: "",
     pin: "",
   });
@@ -61,14 +60,14 @@ export function SentMoney() {
           <CardHeader>
             <div className="flex items-center gap-2">
               <Send className="h-5 w-5 text-primary" />
-              <CardTitle>Send Money</CardTitle>
+              <CardTitle>Cashout</CardTitle>
             </div>
-            <CardDescription>Send money to another user</CardDescription>
+            <CardDescription>Withdraw cash from an agent</CardDescription>
           </CardHeader>
 
           <CardContent>
             {step === 1 && (
-              <SendMoney
+              <CashoutStepOne
                 data={data}
                 setData={setData}
                 handleSubmit={handleSubmit}
@@ -76,28 +75,57 @@ export function SentMoney() {
             )}
 
             {step === 2 && (
-              <TransactionForm
+              <CashoutStepTwo
                 data={data}
                 handleSubmit={handleSubmit}
                 setData={setData}
               />
             )}
 
-            {step === 3 && success && <ConfirmPage data={data} />}
+            {step === 3 && success && (
+              <div className="text-center space-y-4">
+                <div className="flex justify-center">
+                  <CheckCircle2 className="h-16 w-16 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-medium">Cash Out Successful!</h3>
+                  <p className="text-sm text-muted-foreground">
+                    You have withdrawn ৳5 from agent 55
+                  </p>
+                </div>
+                <div className="rounded-lg bg-muted p-3 text-left">
+                  <div className="flex justify-between text-sm">
+                    <span>Transaction ID:</span>
+                    <span className="font-medium">
+                      CO{Math.floor(Math.random() * 1000000)}
+                    </span>
+                  </div>
+                  <div className="flex justify-between text-sm mt-2">
+                    <span>Date & Time:</span>
+                    <span className="font-medium">
+                      {new Date().toLocaleString()}
+                    </span>
+                  </div>
+                  <div className="flex justify-between text-sm mt-2">
+                    <span>Fee (1.5%):</span>
+                    <span className="font-medium">৳{fee.toFixed(2)}</span>
+                  </div>
+                </div>
+              </div>
+            )}
           </CardContent>
-
           {step === 3 && (
             <CardFooter>
-              <Button 
+              <Button
                 variant="outline"
-                className="w-full cursor-pointer hover:bg-black hover:text-white border-black/60"
+                className="w-full"
                 onClick={() => {
                   setStep(1);
-                  setData({ recipient: "", amount: "", pin: "" });
+
                   setSuccess(false);
                 }}
               >
-                Send Another Payment
+                New Cash Out Request
               </Button>
             </CardFooter>
           )}

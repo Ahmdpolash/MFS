@@ -1,4 +1,4 @@
-"use client"
+
 
 import { useMousePosition } from "@/lib/hooks/use-mouse-position"
 import { useEffect, useRef, useState } from "react"

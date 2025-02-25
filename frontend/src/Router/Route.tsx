@@ -8,6 +8,7 @@ import AdminHome from "@/pages/dashboard/admin/AdminHome";
 import AllAgent from "@/pages/dashboard/agent/all-agent";
 import { UserDashboard } from "@/pages/dashboard/user/user-dashboard";
 import { SentMoney } from "@/pages/dashboard/user/send-money";
+import { Cashout } from "@/pages/dashboard/user/cashout";
 
 const Route = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const Route = createBrowserRouter([
       {
         path: "send-money",
         element: <SentMoney />,
+      },
+      {
+        path: "cashout",
+        element: <Cashout />,
       },
     ],
   },
