@@ -6,6 +6,7 @@ import SignUp from "@/pages/SignUp";
 import DashboardLayout from "@/layout/DashboardLayout";
 import AdminHome from "@/pages/dashboard/admin/AdminHome";
 import AllAgent from "@/pages/dashboard/agent/all-agent";
+import { UserDashboard } from "@/pages/dashboard/user/user-dashboard";
 
 const Route = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const Route = createBrowserRouter([
       {
         path: "all-agents",
         element: <AllAgent />,
+      },
+      {
+        path: "user",
+        element: <UserDashboard />,
       },
     ],
   },
