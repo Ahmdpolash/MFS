@@ -55,7 +55,7 @@ const SignUp = () => {
       console.log(res.data);
 
       if (res?.data?.success) {
-        toast.success("Registered..");
+        toast.success("Registered..! plaeas login now");
         navigate("/sign-in");
       }
       return res?.data;
@@ -195,7 +195,7 @@ const SignUp = () => {
                 )}
               />
 
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full cursor-pointer">
                 Register
               </Button>
 

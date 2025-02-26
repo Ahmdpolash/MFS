@@ -28,13 +28,13 @@ const createUser = async (payload: IUser) => {
 // login user
 
 const loginUserIntoDB = async (payload: ILogin) => {
-  const { email, number, password } = payload;
+  const { identifier, password } = payload;
 
   let user;
-  if (email) {
-    user = await User.findOne({ email }).select("+password");
-  } else if (number) {
-    user = await User.findOne({ number }).select("+password");
+  if (identifier.includes("@")) {
+    user = await User.findOne({ email: identifier }).select("+password");
+  } else {
+    user = await User.findOne({ number: identifier }).select("+password");
   }
 
   if (!user) {
@@ -59,12 +59,9 @@ const loginUserIntoDB = async (payload: ILogin) => {
     { expiresIn: "1d" }
   );
 
-  
   const result = await User.findById(user._id);
 
   return { token, result };
-
-
 };
 
 // get all users

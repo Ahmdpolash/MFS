@@ -14,10 +14,13 @@ import { Input } from "@/components/ui/input";
 
 import { useForm } from "react-hook-form";
 
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { loginSchema } from "@/types/schema";
+import ax from "@/lib/axios-instance";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
+  const navigate = useNavigate();
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -26,8 +29,30 @@ const Login = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof loginSchema>) => {
+  const onSubmit = async (values: z.infer<typeof loginSchema>) => {
     console.log(values);
+
+    try {
+      
+   
+
+      const res = await ax.post("/auth/signin", {
+        identifier: values.identifier,
+        password: values.password,
+      });
+
+      console.log(res.data);
+
+      if (res.data.success) {
+        toast.success("Signin successful 🎉");
+        navigate("/dashboard/user");
+      } else {
+        toast.error(res.data.message || "Signin failed");
+      }
+      return res?.data;
+    } catch (error) {
+      toast.error("Invalid credentials");
+    }
   };
 
   return (
@@ -97,6 +122,8 @@ const Login = () => {
           </Form>
         </CardContent>
       </Card>
+
+      <Toaster />
     </div>
   );
 };

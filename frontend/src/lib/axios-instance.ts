@@ -7,6 +7,9 @@ const api = "http://localhost:5000";
 const ax = axios.create({
   baseURL: `${api}`,
   withCredentials: true,
+  headers: {
+    "Content-Type": "application/json", 
+  },
 });
 
 ax.interceptors.request.use(async (api) => {
