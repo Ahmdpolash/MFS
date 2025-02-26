@@ -26,10 +26,11 @@ import {
 } from "@/components/ui/select";
 import { useForm } from "react-hook-form";
 import { Info } from "lucide-react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { signUpSchema } from "@/types/schema";
-
-
+import ax from "@/lib/axios-instance";
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 const SignUp = () => {
   const form = useForm<z.infer<typeof signUpSchema>>({
@@ -39,14 +40,33 @@ const SignUp = () => {
       password: "",
       number: "",
       email: "",
-      accountType: "USER",
+      role: "user",
       nid: "",
     },
   });
 
-  const onSubmit = (values: z.infer<typeof signUpSchema>) => {
-    const initialBalance = values.accountType === "AGENT" ? 100000 : 40;
-    console.log("Registration values:", { ...values, initialBalance });
+  const navigate = useNavigate();
+
+  const onSubmit = async (values: z.infer<typeof signUpSchema>) => {
+    const initialBalance = values.role === "agent" ? 100000 : 40;
+
+    try {
+      const res = await ax.post("/auth/signup", { ...values, initialBalance });
+      console.log(res.data);
+
+      if (res?.data?.success) {
+        toast.success("Registered..");
+        navigate("/sign-in");
+      }
+      return res?.data;
+    } catch (error) {
+      toast.error("something went wrong..");
+
+      if (axios.isAxiosError(error) && error.response) {
+        return error.response.data;
+      }
+      throw error;
+    }
   };
 
   return (
@@ -82,7 +102,7 @@ const SignUp = () => {
                 {/* role */}
                 <FormField
                   control={form.control}
-                  name="accountType"
+                  name="role"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Account Type</FormLabel>
@@ -96,8 +116,8 @@ const SignUp = () => {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="USER">User</SelectItem>
-                          <SelectItem value="AGENT">Agent</SelectItem>
+                          <SelectItem value="user">User</SelectItem>
+                          <SelectItem value="agent">Agent</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -191,8 +211,11 @@ const SignUp = () => {
           </Form>
         </CardContent>
       </Card>
+      <Toaster />
     </div>
   );
 };
 
 export default SignUp;
+
+//https://mfs-bw2atetkh-polashs-projects.vercel.app/

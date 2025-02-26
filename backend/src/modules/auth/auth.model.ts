@@ -34,8 +34,8 @@ const userSchema = new mongoose.Schema<IUser>(
     },
     role: {
       type: String,
-      enum: ["USER", "AGENT","ADMIN"],
-      default: "USER",
+      enum: ["user", "agent", "admin"],
+      default: "user",
     },
     status: {
       type: String,
@@ -49,6 +49,7 @@ const userSchema = new mongoose.Schema<IUser>(
     },
     initialBalance: {
       type: Number,
+      // if role is agent the the balance is 10000 otherwise 40
     },
   },
   { timestamps: true }

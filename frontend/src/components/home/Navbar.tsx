@@ -9,6 +9,8 @@ import { Button } from "../ui/button";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
 
+  const role = "user";
+
   const toggleMenu = () => {
     setOpen(!open);
   };
@@ -43,6 +45,7 @@ const Navbar = () => {
             <NavLink href="/">Home</NavLink>
             <NavLink href="/">How it Works</NavLink>
             <NavLink href="/">About Us</NavLink>
+            <NavLink href="/dashboard/user">Dashboard</NavLink>
           </div>
 
           {/* Mobile menu */}
@@ -66,7 +69,7 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center">
-            <Link to={'/sign-in'}>
+            <Link to={"/sign-in"}>
               <Button className="bg-purple-600 hover:bg-purple-700 text-white cursor-pointer">
                 {" "}
                 SIGN IN

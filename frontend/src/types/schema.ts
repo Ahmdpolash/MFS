@@ -16,7 +16,7 @@ export const signUpSchema = z.object({
     .regex(/^\d+$/, "PIN must contain only numbers"),
     number: z.string().regex(/^01\d{9}$/, "Invalid Bangladesh mobile number"),
   email: z.string().email("Invalid email address"),
-  accountType: z.enum(["AGENT", "USER"]),
+  role: z.enum(["agent", "user"]),
   nid: z.string().min(10, "NID must be at least 10 characters"),
 });
 

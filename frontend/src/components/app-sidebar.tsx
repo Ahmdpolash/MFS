@@ -20,7 +20,7 @@ const menuItems = {
   admin: [
     {
       title: "Dashboard Overview",
-      url: "/dashboard",
+      url: "/",
       icon: LayoutDashboard,
     },
     {
@@ -58,9 +58,9 @@ const menuItems = {
     { title: "Profile", url: "/dashboard/profile", icon: User },
   ],
   agent: [
-    { title: "Dashboard Overview", url: "/dashboard", icon: LayoutDashboard },
+    { title: "Dashboard Overview", url: "/dashboard/agent", icon: LayoutDashboard },
     { title: "Cash-In", url: "/dashboard/cash-in", icon:CirclePlus },
-    { title: "Cash-Out", url: "/dashboard/send-money", icon: Banknote },
+    { title: "Request Recharge", url: "/dashboard/send-money", icon: Banknote },
 
     {
       title: "Transactions History",
@@ -84,7 +84,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenuButton>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={menuItems["user"]} />
+        <NavMain items={menuItems["agent"]} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser

@@ -42,7 +42,7 @@ const DashboardLayout = () => {
             </Breadcrumb>
           </div>
         </header>
-        <div className="px-2 lg:px-5 bg-slate-100/70">
+        <div className="px-2 lg:px-5 bg-slate-100/70 h-full w-full">
           <Outlet />
         </div>
       </SidebarInset>

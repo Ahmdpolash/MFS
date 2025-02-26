@@ -51,7 +51,7 @@ export function Cashout() {
   };
 
   const fee = calculateFee();
-  const total = Number.parseFloat(data.amount) + fee;
+  // const total = Number.parseFloat(data.amount) + fee;
 
   return (
     <div className="max-w-lg  lg:h-[calc(_100vh-_65px)] grid items-center  mx-auto">

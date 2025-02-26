@@ -4,7 +4,7 @@ export interface IUser {
   number: string;
   password: string;
   nid: string;
-  role: "USER" | "AGENT" | "ADMIN";
+  role: "user" | "agent" | "admin";
   status: "active" | "blocked";
   isDeleted: boolean;
   initialBalance?: number;

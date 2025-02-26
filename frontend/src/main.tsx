@@ -8,5 +8,6 @@ import Route from "./Router/Route";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <RouterProvider router={Route} />
+    
   </StrictMode>
 );

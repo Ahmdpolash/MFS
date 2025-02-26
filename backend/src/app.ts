@@ -9,18 +9,21 @@ dotenv.config();
 
 //parser
 app.use(express.json());
-app.use(cookieParser())
+app.use(cookieParser());
 
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: [
+      "http://localhost:5173",
+      // "https://mfs-frontend-hubbipa6c-polashs-projects.vercel.app",
+    ],
     credentials: true,
   })
 );
 
 //routes
 
-app.use("/user", authRoute);
+app.use("/auth", authRoute);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("MFS SERVER RUNNING");

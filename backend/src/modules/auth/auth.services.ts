@@ -50,7 +50,7 @@ const loginUserIntoDB = async (payload: ILogin) => {
   // jwt token
   const token = jwt.sign(
     {
-      id: user._id,
+      userId: user._id,
       email: user.email,
       number: user.number,
       role: user.role,

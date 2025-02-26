@@ -43,6 +43,10 @@ const loginUser = async (req: Request, res: Response) => {
   }
 };
 
+export const signout = (req: Request, res: Response) => {
+  res.clearCookie("token").status(200).json("Signout success!");
+};
+
 const getUser = async (req: Request, res: Response) => {
   try {
     const result = await authServices.getUsers();
@@ -61,4 +65,4 @@ const getUser = async (req: Request, res: Response) => {
   }
 };
 
-export const authController = { createUser, getUser, loginUser };
+export const authController = { createUser, getUser, loginUser,signout };

@@ -47,7 +47,7 @@ const transactions = [
   },
 ];
 
-export function AdminHome() {
+export function AgentHome() {
   const [showBalance, setShowBalance] = useState(false);
   const balance = "5,240";
 
@@ -84,7 +84,7 @@ export function AdminHome() {
         </Card>
         <Card className="border border-slate-500/50">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-xl font-medium ">Send Money</CardTitle>
+            <CardTitle className="text-xl font-medium ">Total Transactions</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">24</div>
@@ -95,7 +95,7 @@ export function AdminHome() {
         </Card>
         <Card className="border border-slate-500/50">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-xl font-medium">Cash Out</CardTitle>
+            <CardTitle className="text-xl font-medium">Total CashIn Transaction</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">12</div>

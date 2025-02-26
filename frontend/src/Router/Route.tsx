@@ -4,11 +4,18 @@ import Error from "@/components/shared/Error";
 import Login from "@/pages/Login";
 import SignUp from "@/pages/SignUp";
 import DashboardLayout from "@/layout/DashboardLayout";
-import AdminHome from "@/pages/dashboard/admin/AdminHome";
+
 import AllAgent from "@/pages/dashboard/agent/all-agent";
 import { UserDashboard } from "@/pages/dashboard/user/user-dashboard";
 import { SentMoney } from "@/pages/dashboard/user/send-money";
 import { Cashout } from "@/pages/dashboard/user/cashout";
+import { AdminHome } from "@/pages/dashboard/admin/AdminHome";
+import { AgentHome } from "@/pages/dashboard/agent/agentHome";
+
+
+
+
+
 
 const Route = createBrowserRouter([
   {
@@ -25,12 +32,16 @@ const Route = createBrowserRouter([
     element: <SignUp />,
   },
   {
-    path: "/dashboard",
+    path: `/dashboard`,
     element: <DashboardLayout />,
     children: [
       {
-        path: "",
+        path: "admin",
         element: <AdminHome />,
+      },
+      {
+        path: "agent",
+        element: <AgentHome />,
       },
       {
         path: "all-agents",

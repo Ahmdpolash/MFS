@@ -1,7 +1,7 @@
 import type React from "react";
 
 import { useState } from "react";
-import { CheckCircle2, Send } from "lucide-react";
+import {  Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -46,13 +46,13 @@ export function SentMoney() {
     }
   };
 
-  const calculateFee = () => {
-    const amountNum = Number.parseFloat(data.amount);
-    return amountNum > 100 ? 5 : 0;
-  };
+  // const calculateFee = () => {
+  //   const amountNum = Number.parseFloat(data.amount);
+  //   return amountNum > 100 ? 5 : 0;
+  // };
 
-  const fee = calculateFee();
-  const total = Number.parseFloat(data.amount) + fee;
+  // const fee = calculateFee();
+  // const total = Number.parseFloat(data.amount) + fee;
 
   return (
     <div className="max-w-lg  lg:h-[calc(_100vh-_65px)] grid items-center  mx-auto">
