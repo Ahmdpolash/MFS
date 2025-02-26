@@ -48,16 +48,15 @@ const loginUserIntoDB = async (payload: ILogin) => {
   }
 
   // jwt token
-  const token = jwt.sign(
-    {
-      userId: user._id,
-      email: user.email,
-      number: user.number,
-      role: user.role,
-    },
-    process.env.JWT_SECRET as string,
-    { expiresIn: "1d" }
-  );
+
+  const jwtPayload = {
+    userId: user.id,
+    role: user.role,
+  };
+
+  const token = jwt.sign(jwtPayload, process.env.JWT_SECRET as string, {
+    expiresIn: "1d",
+  });
 
   const result = await User.findById(user._id);
 

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { authServices } from "./auth.services";
-
+import httpStatus from "http-status";
 const createUser = async (req: Request, res: Response) => {
   try {
     const result = await authServices.createUser(req.body);
@@ -22,7 +22,6 @@ const createUser = async (req: Request, res: Response) => {
 const loginUser = async (req: Request, res: Response) => {
   try {
     const result = await authServices.loginUserIntoDB(req.body);
-    
 
     res.cookie("token", result.token, {
       httpOnly: true,
@@ -48,6 +47,14 @@ export const signout = (req: Request, res: Response) => {
   res.clearCookie("token").status(200).json("Signout success!");
 };
 
+const getMe = async (req: Request, res: Response) => {
+
+
+  
+
+
+};
+
 const getUser = async (req: Request, res: Response) => {
   try {
     const result = await authServices.getUsers();
@@ -66,4 +73,4 @@ const getUser = async (req: Request, res: Response) => {
   }
 };
 
-export const authController = { createUser, getUser, loginUser,signout };
+export const authController = { createUser, getUser, loginUser, signout,getMe };
