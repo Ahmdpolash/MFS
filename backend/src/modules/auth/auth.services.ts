@@ -18,45 +18,56 @@ const createUser = async (payload: IUser) => {
     throw new Error("user already exists");
   }
 
+  // hashed pass
   const hashedPassword = bcrypt.hashSync(payload.password, 10);
   const result = await User.create({ ...payload, password: hashedPassword });
 
   return result;
 };
 
+// login user
+
 const loginUserIntoDB = async (payload: ILogin) => {
   const { email, number, password } = payload;
 
   let user;
   if (email) {
-    user = await User.findOne({ email });
+    user = await User.findOne({ email }).select("+password");
   } else if (number) {
-    user = await User.findOne({ number });
+    user = await User.findOne({ number }).select("+password");
   }
 
   if (!user) {
     throw new Error("Wrong credentials");
   }
 
+  // compare password
   const validPassword = bcrypt.compareSync(password, user.password);
   if (!validPassword) {
     throw new Error("Wrong credentials");
   }
 
+  // jwt token
   const token = jwt.sign(
     {
       id: user._id,
       email: user.email,
       number: user.number,
-      accountType: user.accountType,
+      role: user.role,
     },
     process.env.JWT_SECRET as string,
     { expiresIn: "1d" }
   );
 
-  return { token: token, user: user };
+  
+  const result = await User.findById(user._id);
+
+  return { token, result };
+
+
 };
 
+// get all users
 const getUsers = async () => {
   const result = await User.find();
   return result;

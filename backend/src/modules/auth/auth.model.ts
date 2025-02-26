@@ -32,10 +32,20 @@ const userSchema = new mongoose.Schema<IUser>(
       unique: true,
       trim: true,
     },
-    accountType: {
+    role: {
       type: String,
-      enum: ["USER", "AGENT"],
+      enum: ["USER", "AGENT","ADMIN"],
       default: "USER",
+    },
+    status: {
+      type: String,
+      enum: ["active", "blocked"],
+      default: "active",
+    },
+
+    isDeleted: {
+      type: Boolean,
+      default: false,
     },
     initialBalance: {
       type: Number,

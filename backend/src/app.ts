@@ -4,6 +4,7 @@ const app: Application = express();
 import dotenv from "dotenv";
 import { authRoute } from "./modules/auth/auth.route";
 import cookieParser from "cookie-parser";
+import { notFound } from "./middleware/not-found";
 dotenv.config();
 
 //parser
@@ -24,5 +25,7 @@ app.use("/user", authRoute);
 app.get("/", (req: Request, res: Response) => {
   res.send("MFS SERVER RUNNING");
 });
+
+app.use(notFound);
 
 export default app;

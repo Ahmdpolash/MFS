@@ -22,7 +22,6 @@ const createUser = async (req: Request, res: Response) => {
 const loginUser = async (req: Request, res: Response) => {
   try {
     const result = await authServices.loginUserIntoDB(req.body);
-  
 
     res.cookie("token", result.token, {
       httpOnly: true,
@@ -33,9 +32,8 @@ const loginUser = async (req: Request, res: Response) => {
     res.status(200).json({
       success: true,
       message: "User logged in successfully",
-     
+      data: result,
     });
-   
   } catch (error) {
     res.status(400).json({
       success: true,

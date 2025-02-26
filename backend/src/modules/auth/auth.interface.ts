@@ -4,16 +4,14 @@ export interface IUser {
   number: string;
   password: string;
   nid: string;
-  accountType: "USER" | "AGENT";
+  role: "USER" | "AGENT" | "ADMIN";
+  status: "active" | "blocked";
+  isDeleted: boolean;
   initialBalance?: number;
 }
 
-
 export interface ILogin {
-   
-    email?: string;
-    number?: string;
-    password: string;
-   
-  }
-  
+  email?: string;
+  number?: string;
+  password: string;
+}
