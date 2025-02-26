@@ -1,5 +1,14 @@
 import * as React from "react";
-import { ArrowRightLeft, Banknote, CirclePlus, LayoutDashboard, Send, User, UserRoundCog, Users } from "lucide-react";
+import {
+  ArrowRightLeft,
+  Banknote,
+  CirclePlus,
+  LayoutDashboard,
+  Send,
+  User,
+  UserRoundCog,
+  Users,
+} from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
 
@@ -14,6 +23,10 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { Link } from "react-router";
+import { useUser } from "@/context/user-provider";
+import { getToken } from "@/lib/getToken";
+
+import Cookies from "js-cookie";
 
 // This is sample data.
 const menuItems = {
@@ -51,15 +64,27 @@ const menuItems = {
     },
   ],
   user: [
-    { title: "Dashboard Overview", url: "/dashboard/user", icon: LayoutDashboard },
+    {
+      title: "Dashboard Overview",
+      url: "/dashboard/user",
+      icon: LayoutDashboard,
+    },
     { title: "Send Money", url: "/dashboard/send-money", icon: Send },
     { title: "Cashout", url: "/dashboard/cashout", icon: Banknote },
-    { title: "Transactions", url: "/dashboard/transactions", icon: ArrowRightLeft },
+    {
+      title: "Transactions",
+      url: "/dashboard/transactions",
+      icon: ArrowRightLeft,
+    },
     { title: "Profile", url: "/dashboard/profile", icon: User },
   ],
   agent: [
-    { title: "Dashboard Overview", url: "/dashboard/agent", icon: LayoutDashboard },
-    { title: "Cash-In", url: "/dashboard/cash-in", icon:CirclePlus },
+    {
+      title: "Dashboard Overview",
+      url: "/dashboard/agent",
+      icon: LayoutDashboard,
+    },
+    { title: "Cash-In", url: "/dashboard/cash-in", icon: CirclePlus },
     { title: "Request Recharge", url: "/dashboard/send-money", icon: Banknote },
 
     {
@@ -84,7 +109,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenuButton>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={menuItems["agent"]} />
+        <NavMain items={menuItems["user"]} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser

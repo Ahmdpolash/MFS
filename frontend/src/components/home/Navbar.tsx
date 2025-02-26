@@ -6,10 +6,12 @@ import { Link } from "react-router";
 import Container from "../shared/Container";
 import { motion } from "framer-motion";
 import { Button } from "../ui/button";
+import { useUser } from "@/context/user-provider";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
 
-  const role = "user";
+  const { user } = useUser();
+  console.log(user);
 
   const toggleMenu = () => {
     setOpen(!open);

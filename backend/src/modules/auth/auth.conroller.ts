@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { authServices } from "./auth.services";
 import httpStatus from "http-status";
+import User from "./auth.model";
 const createUser = async (req: Request, res: Response) => {
   try {
     const result = await authServices.createUser(req.body);
@@ -27,6 +28,7 @@ const loginUser = async (req: Request, res: Response) => {
       httpOnly: true,
       secure: process.env.mode === "production",
       maxAge: 1000 * 60 * 60 * 24 * 365, // 1yr
+    
     });
 
     res.status(200).json({
@@ -48,11 +50,15 @@ export const signout = (req: Request, res: Response) => {
 };
 
 const getMe = async (req: Request, res: Response) => {
-
-
-  
-
-
+  try {
+    // const user = await User.findById(req.user._id)
+    res.status(200).json({
+      success: true,
+      message: "User retrieved successfully",
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Server Error" });
+  }
 };
 
 const getUser = async (req: Request, res: Response) => {
@@ -73,4 +79,10 @@ const getUser = async (req: Request, res: Response) => {
   }
 };
 
-export const authController = { createUser, getUser, loginUser, signout,getMe };
+export const authController = {
+  createUser,
+  getUser,
+  loginUser,
+  signout,
+  getMe,
+};

@@ -4,6 +4,8 @@ import { jwtDecode } from "jwt-decode";
 export const getCurrentUser = async () => {
   try {
     const token = await getToken();
+    
+    
 
     if (!token) {
       return null;

@@ -18,6 +18,7 @@ import { Link, useNavigate } from "react-router";
 import { loginSchema } from "@/types/schema";
 import ax from "@/lib/axios-instance";
 import toast, { Toaster } from "react-hot-toast";
+import Cookies from "js-cookie";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -33,19 +34,19 @@ const Login = () => {
     console.log(values);
 
     try {
-      
-   
-
       const res = await ax.post("/auth/signin", {
         identifier: values.identifier,
         password: values.password,
       });
 
-      console.log(res.data);
-
       if (res.data.success) {
         toast.success("Signin successful 🎉");
         navigate("/dashboard/user");
+
+        const token = Cookies.get("token");
+        console.log("Token cookie:", token);
+
+
       } else {
         toast.error(res.data.message || "Signin failed");
       }

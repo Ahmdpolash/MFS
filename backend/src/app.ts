@@ -15,7 +15,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      // "https://mfs-frontend-hubbipa6c-polashs-projects.vercel.app",
+      "https://mfs-frontend-hubbipa6c-polashs-projects.vercel.app",
     ],
     credentials: true,
   })

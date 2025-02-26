@@ -1,4 +1,5 @@
 import { getCurrentUser } from "@/lib/getCurrentUser";
+
 import {
   createContext,
   ReactNode,
@@ -9,17 +10,19 @@ import {
 
 const authContext = createContext<any>(null);
 
-export const authProvider = ({ children }: { children: ReactNode }) => {
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState(null);
 
   const [loading, setLoading] = useState(true);
+
+  console.log(user, loading);
 
   useEffect(() => {
     getCurrentUser().then((user: any) => {
       setUser(user);
       setLoading(false);
     });
-  }, [loading]);
+  }, []);
 
   return (
     <authContext.Provider value={{ user, setUser, loading, setLoading }}>
